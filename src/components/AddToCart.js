@@ -1,9 +1,13 @@
 "use client"
-import toast, { Toaster } from "react-hot-toast"
 
-const AddToCart = () => {
+import toast, { Toaster } from "react-hot-toast"
+import { useCart } from "../utils/useCart"
+
+const AddToCart = ({product}) => {
+  const {addItem} = useCart()
   const handleCartAdd = () =>{
-    toast.success('Item add to cart')
+    addItem(product)
+    toast.success(`${product.name} Item added to cart`)
   }
   return (
     <div>

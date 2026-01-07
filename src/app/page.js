@@ -1,9 +1,13 @@
 import Link from "next/link";
-// import ShareButton from "../components/ShareButton";
+import ShareButton from "../components/ShareButton";
 import ProductCard from "../components/ProductCard";
 import { getProducts } from "../services/productService";
 
+
+//  export const revalidate = 30 
+
 const Page = async () => {
+   console.log('Home page is returned')
   const products = await getProducts(8)
   return (
     <div>

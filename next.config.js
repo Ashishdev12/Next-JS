@@ -1,8 +1,26 @@
-// @ts-check
- 
+// const nextConfig = {
+//   output: "export", // keep if you want static export
+//   images: {
+//     unoptimized: true, // disables Next.js image optimization API
+//   },
+// };
+
+// export default nextConfig;
+
 /** @type {import('next').NextConfig} */
-module.exports = {
-  /* config options here */
-  output: 'export'
-}
- 
+const nextConfig = {
+  reactStrictMode: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "files.stripe.com",
+      },
+    ],
+  },
+};
+
+export default nextConfig;
