@@ -4,11 +4,6 @@ export async function POST(req) {
   const items = await req.json();
   console.log("Checkout items:", items);
 
-  //   if (!items || !items[0]?.price) {
-  //   return Response.json({ error: "Invalid price ID sent" }, { status: 400 });
-  // }
-
-
  try {
     const session = await stripe.checkout.sessions.create({
       line_items: items.map(item => ({
