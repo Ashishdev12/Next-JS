@@ -1,6 +1,6 @@
 import "./globals.css";
 import NavBar from "../components/NavBar";
-import { montserratFont } from "../fonts";
+import { montserratFont } from "./fonts";
 import Provider from "../components/Provider";
 
 export const metadata = {

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 //  export const revalidate = 30 //(validating after 30 sec getting data from server)
-//  export const dynamicParams = true
+ export const dynamicParams = true
 // export const dynamic = "force-dynamic" // default is 'auto
 
 // export const dynamicParams = false (making static file default is true it will fetch page on run time then make it static page.)
