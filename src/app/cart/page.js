@@ -27,44 +27,43 @@ const page = () => {
     deleteById,
   } = useCart();
 
-
-  const router = useRouter()
+  const router = useRouter();
 
   const cartCheckout = async () => {
     try {
-      const body = cartItems.map(item => {
+      const body = cartItems.map((item) => {
         return {
           price: item.price_id,
-          quantity: item.quantity
-        }
-      })
-     const url = await handleCheckout(body);
-    
-    if (url) {
-      console.log("Redirecting to stripe", url);
-      router.push(url)
-    } else {
-      toast.error("Failed to get checkout session");
+          quantity: item.quantity,
+        };
+      });
+      const url = await handleCheckout(body);
+
+      if (url) {
+        console.log("Redirecting to stripe", url);
+        router.push(url);
+      } else {
+        toast.error("Failed to get checkout session");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast.error(`Checkout failed`);
     }
-  } catch(error) {
-    console.error("Checkout error:", error);
-    toast.error(`Checkout failed`);
-  }
-};
+  };
 
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    if (query.get("success")) {
+      toast.success("Order placed! You will receive an email confirmation.");
+      deleteAllItems();
+    }
 
- useEffect(() => {
-       
-        const query = new URLSearchParams(window.location.search);
-        if (query.get('success')) {
-          toast.success('Order placed! You will receive an email confirmation.');
-          deleteAllItems()
-        }
-    
-        if (query.get('canceled')) {
-            toast.error('Order canceled -- continue to shop around and checkout when you are ready.');
-        }
-      }, []);
+    if (query.get("canceled")) {
+      toast.error(
+        "Order canceled -- continue to shop around and checkout when you are ready.",
+      );
+    }
+  }, []);
 
   return (
     <div className="m-5 px-20">

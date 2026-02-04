@@ -20,6 +20,7 @@ export const getProducts = async (limit) => {
   return products;
 };
 
+// Individual product service id
 export const getProductsById = async (productId) => {
   if (!productId || typeof productId !== "string") {
     console.error("Invalid productId passed to Stripe:", productId);

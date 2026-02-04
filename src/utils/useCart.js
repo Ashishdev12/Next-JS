@@ -13,6 +13,7 @@ export const useCart = () => {
        populateCartItems()
     },[cartItems])
 
+    // for local storage function
    const populateCartItems = ()=>{
        // if items are in localstorage but not in context (happens when we refersh page)
        if(cartItems.length == 0){
@@ -22,9 +23,9 @@ export const useCart = () => {
             setCartItems(temp)
         }
        }
-
    }
 
+   // finding total price function
     const findTotalPrice  = ()=>{
         let amount = 0
         cartItems.forEach(item=>{
@@ -32,6 +33,8 @@ export const useCart = () => {
         })
         setCartTotal(amount)
     }
+
+    // add Item function
     const addItem = (product)=>{
         
        const existingProductIndex = cartItems.findIndex((item)=>item.id == product.id)
@@ -48,6 +51,7 @@ export const useCart = () => {
         
     }
 
+    // delete by id Function
     const deleteById = (productId) =>{
         const newProducts = cartItems.filter(product=>productId != product.id)
         setCartItems(newProducts)
@@ -58,11 +62,13 @@ export const useCart = () => {
         }
     }
 
+    // delete all items function
     const deleteAllItems = ()=>{
         localStorage.removeItem("products")
         setCartItems([])
     }
 
+    // Increment function
     const incrementCartItems = (productId)=>{
         const newProducts = cartItems.map(item=>{
             if(item.id == productId){
@@ -77,6 +83,8 @@ export const useCart = () => {
         localStorage.setItem('products',JSON.stringify(newProducts))
         setCartItems(newProducts)
     }
+
+    // decrement function
     const decrementCartItems = (productId)=>{
         const newProducts = cartItems.map(item=>{
             if(item.id == productId && item.quantity > 1){
